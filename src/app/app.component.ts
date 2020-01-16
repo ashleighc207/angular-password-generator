@@ -10,39 +10,22 @@ export class AppComponent {
   useLetters = false;
   useNumbers = false;
   useCharacters = false;
-  length = "";
-  letters = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z"
-  ];
-  numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-  characters = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-"];
+  length = 0;
+
   onButtonClick() {
-    this.password = "rhekghdkghfldghd;hj;gfhdlkhgfdgkgfk";
+    const letters = "abcdefghijklmnopqrstuvwxyz";
+    const numbers = "1234567890";
+    const characters = "!@#$%^&*()_";
+    let validChars = "";
+    this.useLetters ? (validChars += letters) : null;
+    this.useNumbers ? (validChars += numbers) : null;
+    this.useCharacters ? (validChars += characters) : null;
+    let genPass = "";
+    for (let i = 0; i < this.length; i++) {
+      const idx = Math.floor(Math.random() * validChars.length);
+      genPass += validChars[idx];
+    }
+    this.password = genPass;
   }
   onChangeUseLetters() {
     this.useLetters = !this.useLetters;
@@ -53,8 +36,11 @@ export class AppComponent {
   onChangeUseCharacters() {
     this.useCharacters = !this.useCharacters;
   }
-  onChangeText(newText) {
-    this.length = newText;
+  onChangeText(value: string) {
+    const parsedValue = parseInt(value);
+
+    if (!isNaN(parsedValue)) {
+      this.length = parsedValue;
+    }
   }
-  generatePassword() {}
 }

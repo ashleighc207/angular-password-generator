@@ -1,45 +1,59 @@
-<h1>Password Generator</h1>
-<div class="">
-  <label for="">Enter Length</label>
-  <input
-    type="text"
-    (input)="onChangeText($event.target.value)"
-    [value]="length"
-  />
+<div class="main-container">
+  <h1 class="heading">Password Generator</h1>
+  <div class="length-input">
+    <label for="length" class="length-label">Enter Length</label>
+    <input
+      type="text"
+      (input)="onChangeText($event.target.value)"
+      [value]="length"
+      name="length"
+      class="length"
+    />
+  </div>
+  <div class="check-container">
+    <input
+      class="checkbox"
+      type="checkbox"
+      name="letters"
+      [value]="useLetters"
+      (change)="onChangeUseLetters()"
+    />
+    <label for="letters" class="check-label">Use Letters</label>
+  </div>
+  <div class="check-container">
+    <input
+      class="checkbox"
+      type="checkbox"
+      name="nums"
+      [value]="useNumbers"
+      (change)="onChangeUseNumbers()"
+    />
+    <label for="nums" class="check-label">Use Numbers</label>
+  </div>
+  <div class="check-container">
+    <input
+      class="checkbox"
+      type="checkbox"
+      name="chars"
+      [value]="useCharacters"
+      (change)="onChangeUseCharacters()"
+    />
+    <label for="chars" class="check-label">Use Special Characters</label>
+  </div>
+  <div class="button-container">
+    <button
+      class="button"
+      type="button"
+      name="button"
+      (click)="onButtonClick()"
+    >
+      Generate
+    </button>
+  </div>
+  <div class="result">
+    <span for="result-text">Generated Password: </span>
+    <div class="password-holder">
+      {{ password }}
+    </div>
+  </div>
 </div>
-<div class="">
-  <input
-    type="checkbox"
-    name=""
-    [value]="useLetters"
-    (change)="onChangeUseLetters()"
-  />
-  <label for="">Use Letters</label>
-</div>
-<div class="">
-  <input
-    type="checkbox"
-    name=""
-    [value]="useNumbers"
-    (change)="onChangeUseNumbers()"
-  />
-  <label for="">Use Numbers</label>
-</div>
-<div class="">
-  <input
-    type="checkbox"
-    name=""
-    [value]="useCharacters"
-    (change)="onChangeUseCharacters()"
-  />
-  <label for="">Use Special Characters</label>
-</div>
-<div class="">
-  <button type="button" name="button" (click)="onButtonClick()">
-    Generate
-  </button>
-</div>
-<div class="">
-  <span for="">Your Password: {{ password }}</span>
-</div>
-{{ length }}
